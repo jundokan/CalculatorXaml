@@ -10,8 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Math\IMathOperationService.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\Math\MathOperationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CalculatorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)View\CalculatorPage.xaml.cs">
       <DependentUpon>CalculatorPage.xaml</DependentUpon>
