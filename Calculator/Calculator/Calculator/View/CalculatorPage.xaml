@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Calculator.ViewModel;assembly=Calculator"
+             x:Class="Calculator.View.CalculatorPage">
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0" />
+  </ContentPage.Padding>
+  
+	<Grid RowSpacing="6"
+        ColumnSpacing="6"
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+    
+    <Grid.BindingContext>
+      <local:CalculatorViewModel />
+    </Grid.BindingContext>
+    
+    <Grid.Resources>
+      <ResourceDictionary>
+        <Style TargetType="Button">
+          <Setter Property="VerticalOptions" Value="FillAndExpand" />
+          <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+          <Setter Property="FontSize" Value="Large" />
+          <Setter Property="BackgroundColor" Value="Black" />
+        </Style>
+        <Style x:Key="RedButton" TargetType="Button" >
+          <Setter Property="TextColor" Value="Black" />
+          <Setter Property="FontSize" Value="Large" />
+          <Setter Property="BackgroundColor" Value="Red" />
+        </Style>
+        <Style x:Key="YellowButton" TargetType="Button" BasedOn="{StaticResource RedButton}">
+          <Setter Property="BackgroundColor" Value="Yellow" />
+        </Style>
+      </ResourceDictionary>
+    </Grid.Resources>    
+    
+    <Grid.WidthRequest>
+      <OnPlatform x:TypeArguments="x:Double"
+                  iOS="180"
+                  Android="300"
+                  WinPhone="270" />
+    </Grid.WidthRequest>   
+    <Grid.HeightRequest>
+      <OnPlatform x:TypeArguments="x:Double"
+                  iOS="300"
+                  Android="400"
+                  WinPhone="450" />
+    </Grid.HeightRequest>    
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>    
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/> 
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    
+    <!-- Output Result String-->
+    <Label Text="{Binding ResultText}" Grid.Row="0" Grid.Column="0"
+           FontSize="30"
+           FontAttributes="Bold"
+           HorizontalOptions="End"
+           Grid.ColumnSpan="4"/>
+    
+    <!--Number Buttons-->
+    <Button Text="1" Grid.Row="2" Grid.Column="0"
+            Command="{Binding NumberCommand}"
+            CommandParameter="1"/>
+    <Button Text="4" Grid.Row="3" Grid.Column="0"
+            Command="{Binding NumberCommand}"
+            CommandParameter="4"/>
+    <Button Text="7" Grid.Row="4" Grid.Column="0"
+            Command="{Binding NumberCommand}"
+            CommandParameter="7" />
+    <Button Text="2" Grid.Row="2" Grid.Column="1"
+            Command="{Binding NumberCommand}"
+            CommandParameter="2" />
+    <Button Text="5" Grid.Row="3" Grid.Column="1"
+            Command="{Binding NumberCommand}"
+            CommandParameter="5" />
+    <Button Text="8" Grid.Row="4" Grid.Column="1"
+            Command="{Binding NumberCommand}"
+            CommandParameter="8" /> 
+    <Button Text="3" Grid.Row="2" Grid.Column="2"
+            Command="{Binding NumberCommand}" 
+            CommandParameter="3" />
+    <Button Text="6" Grid.Row="3" Grid.Column="2"
+            Command="{Binding NumberCommand}"
+            CommandParameter="6" />
+    <Button Text="9" Grid.Row="4" Grid.Column="2"
+            Command="{Binding NumberCommand}" 
+            CommandParameter="9" />    
+    <Button Text="0" Grid.Row="5" Grid.Column="0"
+            Style="{DynamicResource RedButton}" 
+            Grid.ColumnSpan="2"
+            Command="{Binding NumberCommand}" 
+            CommandParameter="0" />
+    <Button Text="&#46;" Grid.Row="5" Grid.Column="2"
+            Style="{DynamicResource RedButton}" 
+            Command="{Binding DoubleDotCommand}" />
+    
+    <!-- Math Buttons-->
+    <Button Text="+" Grid.Row="2" Grid.Column="3"
+            Style="{DynamicResource YellowButton}" 
+            Command="{Binding AddCommand}" CommandParameter="+" />
+    <Button Text="-" Grid.Row="3" Grid.Column="3"
+            Style="{DynamicResource YellowButton}"
+            Command="{Binding SubtractCommand}" CommandParameter="-"/>
+    <Button Text="*" Grid.Row="4" Grid.Column="3"
+            Style="{DynamicResource YellowButton}"
+            Command="{Binding MultiplyCommand}" CommandParameter="*" />
+    
+    <!-- Service and result Buttons-->
+     <Button Text="=" Grid.Row="5" Grid.Column="3"
+            TextColor="Black"
+            BackgroundColor="Lime"
+            Command="{Binding ResultCommand}" />
+     <Button Text="C" Grid.Row="1" Grid.Column="0"
+             Grid.ColumnSpan="3"
+             Style="{DynamicResource RedButton}"
+             Command="{Binding ClearCommand}" />
+     <Button Text="&#8678;" Grid.Row="1" Grid.Column="3"
+             Style="{DynamicResource RedButton}"
+             Command="{Binding BackspaceCommand}" />
+  </Grid>
+</ContentPage>
